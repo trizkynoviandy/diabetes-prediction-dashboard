@@ -15,22 +15,30 @@ st.markdown("""
             """)
 
 st.write("1. Pregnancies")
-user_input = st.text_input("Number of times pregnant")
+user_input_1 = st.text_input("Number of times pregnant")
 st.write("2. Glucose")
-user_input = st.text_input("Plasma glucose concentration a 2 hours in an oral glucose tolerance test")
+user_input_2 = st.text_input("Plasma glucose concentration a 2 hours in an oral glucose tolerance test")
 st.write("3. Blood Pressure")
-user_input = st.text_input("Diastolic blood pressure (mm Hg)")
+user_input_3 = st.text_input("Diastolic blood pressure (mm Hg)")
 st.write("4. Skin Thickness")
-user_input = st.text_input("Triceps skin fold thickness (mm)")
+user_input_4 = st.text_input("Triceps skin fold thickness (mm)")
 st.write("5. Insulin")
-user_input = st.text_input("2-Hour serum insulin (mu U/ml)")
+user_input_5 = st.text_input("2-Hour serum insulin (mu U/ml)")
 st.write("6. BMI")
-user_input = st.text_input("Body mass index (weight in kg/(height in m)^2)")
+user_input_6 = st.text_input("Body mass index (weight in kg/(height in m)^2)")
 st.write("7. Diabetes Pedigree Function")
-user_input = st.text_input("Diabetes pedigree function")
+user_input_7 = st.text_input("Diabetes pedigree function")
 st.write("8. Age")
-user_input = st.text_input("Age (years)")
+user_input_8 = st.text_input("Age (years)")
 
-user_output = None
-if user_output != None:
-    st.write("Output : {}".format(user_output))
+input_data = [[user_input_1, user_input_2, user_input_3, user_input_4, user_input_5, user_input_6, user_input_7, user_input_8]]
+
+predict = st.button("Predict")
+if predict:
+    prediction = load_model.predict(input_data)
+    st.success('Prediction Succesful!')
+    if str(prediction) == "[0]":
+        st.write("Result: NEGATIVE")
+    else:
+        st.write("Result: POSITIVE")
+        st.write(str(prediction))
